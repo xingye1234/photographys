@@ -5,7 +5,11 @@ import { createToken } from "@/app/utils/jwt";
 export const GET = (req: NextRequest, res: NextResponse) => {
     return Response.json({
         code: 200,
-        msg: '操作成功'
+        msg: '操作成功',
+        data:{
+            name: 'wkx',
+            age: 24
+        }
     });
 }
 
