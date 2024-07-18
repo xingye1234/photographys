@@ -1,6 +1,6 @@
 "use client";
 import NavBar from "@/app/components/layout/NavBar";
-import { useFetchQuery } from "@/app/utils/query";
+import { login } from "@/app/web/login/api";
 import QueryClientContext from "@/app/context/QueryClient";
 import { useQuery } from "@tanstack/react-query";
 
@@ -13,7 +13,7 @@ export default function Home() {
 }
 
 function App() {
-  const results = useQuery({queryKey:['login'], queryFn:() => fetch('/api/login').then(res => res.json()).then(res => res.data)});
+  const results = useQuery({queryKey:["login"], queryFn:() => login()});
 
   console.log(results);
   return (
