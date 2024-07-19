@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@douyinfe/semi-icons": "^2.62.1",
     "@douyinfe/semi-ui": "^2.62.0",
     "@radix-ui/themes": "^3.1.1",
     "@tanstack/react-query": "^5.51.3",
     "axios": "^1.7.2",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.5",
+    "next-themes": "^0.3.0",
     "nprogress": "^0.2.0",
     "react": "^18",
     "react-dom": "^18",

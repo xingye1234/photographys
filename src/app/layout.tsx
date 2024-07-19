@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import '@radix-ui/themes/styles.css';
-
-
-const inter = Inter({ subsets: ["latin"] });
+import { ThemeProvider } from 'next-themes'
 
 export const metadata: Metadata = {
-  title: "Headstream Photography",
-  description: "A Photography Website",
+  title: "Headerstream Photography",
+  description: "A Photography Website For Headerstream",
 };
 
 export default function RootLayout({
@@ -18,9 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body suppressHydrationWarning={true} className="dark:text-white">
+        <ThemeProvider attribute="class">
           {children}
-        </body>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
