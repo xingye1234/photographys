@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:push":"npx prisma db push",
-    "db:reset":"npx prisma db reset --force",
-    "db:dev":"npx prisma migrate dev --name init"
+    "db:push": "npx prisma db push",
+    "db:reset": "npx prisma db reset --force",
+    "db:dev": "npx prisma migrate dev --name init"
   },
   "dependencies": {
     "@douyinfe/semi-icons": "^2.62.1",
@@ -24,6 +24,7 @@
     "nprogress": "^0.2.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.52.1",
     "tailwindcss-animated": "^1.1.2"
   },
   "devDependencies": {

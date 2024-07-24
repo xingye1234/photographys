@@ -6,7 +6,6 @@ import {join} from "path";
 export const GET = async (req: NextRequest, res: NextResponse) => {
     try {
         const contents = await readFile(join(process.cwd(), '/src/app/data/recommend.ts'), 'utf-8');
-        console.log('------>',JSON.parse(JSON.stringify(contents)));
         return Response.json({
             code: 200,
             msg: '操作成功',

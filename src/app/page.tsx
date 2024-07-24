@@ -22,8 +22,6 @@ function App() {
 
   const {data}= useQuery({queryKey: ['recommend'], queryFn: getRecommend})
 
-  console.log(data)
-
   return (
     <div className="w-full" style={{ height: `calc(100vh - 64px)` }}>
       <NavBar />

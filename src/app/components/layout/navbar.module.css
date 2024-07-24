@@ -16,3 +16,17 @@
     -webkit-animation: dancingColors 15s infinite forwards ease-in-out;
     animation: dancingColors 15s infinite forwards ease-in-out;
   }
+
+
+  .gradient-text-login {
+    /* left, #2A9CF5, #6BDEF5, #A5D060, #00BA90, #2A9CF5 */
+    transition: all 15s ease;
+    background: -o-linear-gradient(left, cyan, #00BA90, blue);
+    background: -webkit-linear-gradient(left, cyan, #00BA90, blue);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-animation: dancingColors 15s infinite forwards ease-in-out;
+    animation: dancingColors 15s infinite forwards ease-in-out;
+  }

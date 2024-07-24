@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import '@radix-ui/themes/styles.css';
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from 'next-themes';
+import { Theme } from '@radix-ui/themes';
 
 export const metadata: Metadata = {
   title: "Headerstream Photography",
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning={true} className="dark:text-white">
         <ThemeProvider attribute="class">
-          {children}
+          <Theme>
+            {children}
+          </Theme>
         </ThemeProvider>
       </body>
     </html>
