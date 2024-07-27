@@ -3,6 +3,7 @@ import React from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Button, Input } from "@douyinfe/semi-ui";
 import { IconUser, IconKey, IconMail } from "@douyinfe/semi-icons";
+import { rules } from "@/app/types/login/rules";
 
 interface IFormInput {
     username: string;
@@ -31,17 +32,7 @@ export default function LoginForm() {
                     <Controller
                         name="username"
                         control={control}
-                        rules={{
-                            required: true,
-                            minLength: {
-                                value: 3,
-                                message: "用户名长度不能小于3位"
-                            },
-                            maxLength: {
-                                value: 18,
-                                message: "用户名长度不能大于18位"
-                            }
-                        }}
+                        rules={rules.uname}
                         render={({ field }) => <Input prefix={<IconUser />} placeholder={"请输入用户名"} style={{ backgroundColor: 'white' }} size="large" {...field} aria-invalid={errors.username ? "true" : "false"} />}
                     />
                     {errors.username && <span role="alert" className="text-red-500 text-sm">{errors.username.message}</span>}
@@ -50,17 +41,7 @@ export default function LoginForm() {
                     <Controller
                         name="password"
                         control={control}
-                        rules={{
-                            required: true,
-                            minLength: {
-                                value: 6,
-                                message: "密码长度不能小于6位"
-                            },
-                            maxLength: {
-                                value: 18,
-                                message: "密码长度不能大于18位"
-                            }
-                        }}
+                        rules={rules.pwd}
                         render={({ field }) => <Input prefix={<IconKey />} placeholder={"请输入密码"} style={{ backgroundColor: 'white' }} size="large" {...field} mode="password" aria-invalid={errors.password ? "true" : "false"} />}
                     />
                     {errors.password && <span role="alert" className="text-red-500 text-sm">{errors.password.message}</span>}
@@ -70,17 +51,7 @@ export default function LoginForm() {
                     <Controller
                         name="passwordConfirm"
                         control={control}
-                        rules={{
-                            required: true,
-                            minLength: {
-                                value: 6,
-                                message: "密码长度不能小于6位"
-                            },
-                            maxLength: {
-                                value: 18,
-                                message: "密码长度不能大于18位"
-                            }
-                        }}
+                        rules={rules.pwd}
                         render={({ field }) => <Input prefix={<IconKey />} placeholder={"请再次输入密码"} style={{ backgroundColor: 'white' }} size="large" {...field} mode="password" aria-invalid={errors.passwordConfirm ? "true" : "false"} />}
                     />
                     {errors.passwordConfirm && <span role="alert" className="text-red-500 text-sm">{errors.passwordConfirm.message}</span>}
@@ -90,9 +61,7 @@ export default function LoginForm() {
                     <Controller
                         name="mail"
                         control={control}
-                        rules={{
-                            required: true
-                        }}
+                        rules={rules.mail}
                         render={({ field }) => <Input prefix={<IconMail />} placeholder={"请输入邮箱"} style={{ backgroundColor: 'white' }} size="large" {...field} aria-invalid={errors.mail ? "true" : "false"} />}
                     />
                     {errors.mail && <span role="alert" className="text-red-500 text-sm">{errors.mail.message}</span>}

@@ -2,7 +2,6 @@ import React from 'react'
 import Link from 'next/link';
 import { INavlist } from '@/app/types/navbar/types';
 
-
 export default function NavList({ navlist }: { navlist: INavlist[] }) {
     return (
         <ul className='flex'>
