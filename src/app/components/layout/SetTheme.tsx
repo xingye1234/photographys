@@ -19,7 +19,7 @@ export default function SetTheme() {
 
     return (
         <>
-            <span onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} className='ml-4 pt-1 cursor-pointer'>
+            <span onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} className='ml-4 pt-2 cursor-pointer'>
                 {theme === "light" ? <IconSun size="extra-large" /> : <IconMoon size="extra-large" />}
             </span>
         </>

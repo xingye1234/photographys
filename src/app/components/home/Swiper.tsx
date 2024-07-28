@@ -1,69 +1,73 @@
-'use client';
-import React from 'react'
-import { Carousel, Typography, Space } from '@douyinfe/semi-ui';
+"use client";
+import React from "react";
+import localFont from "next/font/local";
+import { Carousel, Typography, Space } from "@douyinfe/semi-ui";
 import { IconArrowLeft, IconArrowRight } from "@douyinfe/semi-icons";
 
+import banners from "@/app/images/banner/banner"
+
+const myFont = localFont({
+  src: "../../styles/fonts/xingkai.ttf",
+  display: "swap",
+  style: "italic",
+});
+
 export default function Swiper() {
-    const { Title, Paragraph } = Typography;
+  const { Title, Paragraph } = Typography;
+  const arrowProps = {
+    leftArrow: { children: <IconArrowLeft size="large"/> },
+    rightArrow: { children: <IconArrowRight size="large" /> },
+  };
 
-    const style = {
-        width: '100%',
-        height: '400px',
-    };
+  const imgList = [
+    {
+      id: 1,
+      img: banners.banner1,
+      link: "#",
+    },
+    {
+      id: 2,
+      img: banners.banner2,
+      link: "#",
+    },
+    {
+      id: 3,
+      img: banners.banner3,
+      link: "#",
+    },
+    {
+      id: 4,
+      img: banners.banner4,
+      link: "#",
+    },
+  ];
 
-    const titleStyle = { 
-        position: 'absolute', 
-        top: '100px', 
-        left: '100px'
-    };
-
-    const colorStyle = {
-        color: '#1C1F23'
-    };
-    const arrowProps = {
-        leftArrow: { children: <IconArrowLeft size='large'/> },
-        rightArrow: { children: <IconArrowRight size='large'/> },
-    };
-
-    const renderLogo = () => {
-        return (
-            <img src='https://lf3-static.bytednsdoc.com/obj/eden-cn/ptlz_zlp/ljhwZthlaukjlkulzlp/root-web-sites/semi_logo.svg' alt='semi_logo' style={{ width: 87, height: 31 }}/>
-        );
-    };
-
-    const imgList = [
-        'https://lf3-static.bytednsdoc.com/obj/eden-cn/hjeh7pldnulm/SemiDocs/bg-1.png',
-        'https://lf3-static.bytednsdoc.com/obj/eden-cn/hjeh7pldnulm/SemiDocs/bg-2.png',
-        'https://lf3-static.bytednsdoc.com/obj/eden-cn/hjeh7pldnulm/SemiDocs/bg-3.png',
-    ];
-
-    const textList = [
-        ['Semi 设计管理系统', '从 Semi Design，到 Any Design', '快速定制你的设计系统，并应用在设计稿和代码中'],
-        ['Semi 物料市场', '面向业务场景的定制化组件，支持线上预览和调试', '内容由 Semi Design 用户共建'],
-        ['Semi 设计/代码模板', '高效的 Design2Code 设计稿转代码', '海量 Figma 设计模板一键转为真实前端代码'],
-    ];
-
+  // const logoText = ``
 
   return (
-     <div>
-            <Carousel style={style} arrowProps={arrowProps} speed={1000} arrowType="hover" theme="dark" autoPlay={true}>
-                {
-                    imgList.map((src, index) => {
-                        return (
-                            <div key={index} style={{ backgroundSize: 'cover', backgroundImage: `url('${src}')` }}>
-                                <Space vertical align='start' spacing='medium' style={titleStyle}>
-                                    {renderLogo()}
-                                    <Title heading={2} style={colorStyle}>{textList[index][0]}</Title>
-                                    <Space vertical align='start'>
-                                        <Paragraph style={colorStyle}>{textList[index][1]}</Paragraph>
-                                        <Paragraph style={colorStyle}>{textList[index][2]}</Paragraph>
-                                    </Space>
-                                </Space>
-                            </div>
-                        );
-                    })
-                }
-            </Carousel>
-        </div>
-  )
+    <div className="relative">
+      <Carousel
+        className="w-full h-[25rem] lg:h-[40rem]"
+        arrowProps={arrowProps}
+        speed={1000}
+        theme="light"
+        autoPlay={true}
+      >
+        {imgList.map((item, index) => {
+          return (
+            <div key={index}>
+              <img
+                src={item.img}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
+          );
+        })}
+      </Carousel>
+      <p className={`${myFont.className} absolute text-7xl top-1/2 left-1/2 -translate-x-1/2 z-10  text-white`}>
+        Headerstream Photography
+      </p>
+    </div>
+  );
 }

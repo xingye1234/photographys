@@ -1,9 +1,9 @@
 "use client";
 import NavBar from "@/app/components/layout/NavBar";
 import QueryClientContext from "@/app/context/QueryClient";
-import { BackTop } from '@douyinfe/semi-ui';
+import { BackTop } from "@douyinfe/semi-ui";
 import { useQuery } from "@tanstack/react-query";
-import {GET} from "@/app/utils/request";
+import { GET } from "@/app/utils/request";
 import Swiper from "@/app/components/home/Swiper";
 import Topic from "@/app/components/home/Topic";
 
@@ -15,23 +15,22 @@ export default function Home() {
   );
 }
 
-
 function getRecommend() {
-  return GET('/api/home/recommend')
+  return GET("/api/home/recommend");
 }
 
 function App() {
-
-
-  const {data}= useQuery({queryKey: ['recommend'], queryFn: getRecommend})
+  const { data } = useQuery({ queryKey: ["recommend"], queryFn: getRecommend });
 
   return (
     // style={{ height: `calc(100vh - 64px)` }}
-    <div className="w-full" >
+    <div className="w-full">
       <NavBar />
-      <div className="w-full h-full 2xl:mx-auto p-1 box-border">
-        <Swiper/>
-        <Topic/>
+      <div className="w-full h-full box-border">
+        <Swiper />
+        <div className="px-20 mt-4">
+          <Topic />
+        </div>
       </div>
       <BackTop />
     </div>
