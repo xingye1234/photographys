@@ -1,33 +1,35 @@
 import React from "react";
-import { Box, Card, Flex, Text, Avatar, Grid } from "@radix-ui/themes";
-import banners from "@/app/images/banner/banner";
-import Image from "next/image";
+import { Box, Card, Flex, Text, Grid } from "@radix-ui/themes";
+import {getBannerImages} from "@/app/web/home";
+import { useQuery } from "@tanstack/react-query";
+
+
 
 const topicList = [
   {
     id: 1,
-    img: banners.banner1,
+    img: "/assets/home/banner/1.jpeg",
     link: "#",
     title: "Teodros Girmay",
     desc: "Engineering",
   },
   {
     id: 2,
-    img: banners.banner2,
+    img: '/assets/home/banner/2.jpeg',
     link: "#",
     title: "Teodros Girmay",
     desc: "Engineering",
   },
   {
     id: 3,
-    img: banners.banner3,
+    img: '/assets/home/banner/3.jpeg',
     link: "#",
     title: "Teodros Girmay",
     desc: "Engineering",
   },
   {
     id: 4,
-    img: banners.banner4,
+    img: '/assets/home/banner/4.jpeg',
     link: "#",
     title: "Teodros Girmay",
     desc: "Engineering",
@@ -35,6 +37,10 @@ const topicList = [
 ];
 
 export default function Topic() {
+
+  const results = useQuery({queryKey:["banner"], queryFn:getBannerImages})
+  // console.log(results)
+
   return (
     <div>
       <span className="border-l-4 border-blue-500 pl-2"></span>

@@ -3,7 +3,6 @@ import NavBar from "@/app/components/layout/NavBar";
 import QueryClientContext from "@/app/context/QueryClient";
 import { BackTop } from "@douyinfe/semi-ui";
 import { useQuery } from "@tanstack/react-query";
-import { GET } from "@/app/utils/request";
 import Swiper from "@/app/components/home/Swiper";
 import Topic from "@/app/components/home/Topic";
 
@@ -15,12 +14,9 @@ export default function Home() {
   );
 }
 
-function getRecommend() {
-  return GET("/api/home/recommend");
-}
 
 function App() {
-  const { data } = useQuery({ queryKey: ["recommend"], queryFn: getRecommend });
+  // const { data } = useQuery({ queryKey: ["login"], queryFn:  login});
 
   return (
     // style={{ height: `calc(100vh - 64px)` }}

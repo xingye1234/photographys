@@ -5,8 +5,14 @@ import axios, {
   AxiosProgressEvent,
 } from "axios";
 import NProgress from "nprogress"; //nprogress module
-
 import "nprogress/nprogress.css";
+
+interface IResponse{
+  message: string;
+  data?: any;
+  code:number;
+}
+
 
 const request = axios.create({
   // baseURL: "http://localhost:3000",
@@ -22,9 +28,9 @@ request.interceptors.request.use(
 );
 
 request.interceptors.response.use(
-  (response: AxiosResponse) => {
+  (response: AxiosResponse<IResponse>) => {
     NProgress.done();
-    return response.data;
+    return response;
   },
   (error) => Promise.reject(error)
 );

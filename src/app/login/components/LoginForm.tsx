@@ -4,6 +4,9 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Button, Input } from "@douyinfe/semi-ui";
 import { IconUser, IconKey } from "@douyinfe/semi-icons";
 import { rules } from "@/app/types/login/rules";
+import { login } from "@/app/web/login/api";
+import { Toast } from "@douyinfe/semi-ui";
+import { useRouter } from "next/navigation";
 
 interface IFormInput {
   username: string;
@@ -11,6 +14,7 @@ interface IFormInput {
 }
 
 export default function LoginForm() {
+  const router = useRouter();
   const {
     handleSubmit,
     formState: { errors },
@@ -22,7 +26,22 @@ export default function LoginForm() {
     },
     mode: "onBlur",
   });
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    try {
+      const result = await login({
+        username: data.username,
+        password: data.password,
+      });
+      if (result.data.code === 200) {
+        Toast.success("登录成功");
+        router.replace("/");
+      } else {
+        Toast.error(result.data.message);
+      }
+    } catch (error) {
+      Toast.error("登录失败");
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} method="POST">
