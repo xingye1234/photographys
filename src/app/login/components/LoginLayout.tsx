@@ -8,8 +8,9 @@ const myFont = localFont({
   style: "italic",
 });
 
-const hStyles = `${myFont.className} font-bold text-5xl text-[#4e4e4e] dark:text-white`;
-const pStyles = `${myFont.className} font-bold text-5xl ml-1 text-[#4e4e4e] dark:text-white`;
+// #4e4e4e
+const hStyles = `${myFont.className} font-bold text-5xl text-white `;
+const pStyles = `${myFont.className} font-bold text-5xl ml-1 text-white `;
 
 export default function LoginLayout({
   children,
@@ -22,7 +23,7 @@ export default function LoginLayout({
         <p className={hStyles}>H</p>
         <p className={pStyles}>P</p>
       </div>
-      <h1 className="hidden lg:block text-lg font-bold mb-6 mt-6 italic text-[#4e4e4e] dark:text-white">
+      <h1 className="hidden lg:block text-lg font-bold mb-6 mt-6 italic text-white">
         欢迎登录 Headerstream Photography
       </h1>
       <h1 className="lg:hidden text-3xl font-bold text-center mb-6 mt-6 italic text-white">
