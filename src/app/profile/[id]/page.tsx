@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Id() {
+export default function Id({params:{id}}: { params: { id: string } }) {
   return (
-    <div>Id</div>
+    <div>{id}</div>
   )
 }

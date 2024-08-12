@@ -64,7 +64,7 @@ export const POST = async (req: NextRequest, res: NextApiResponse) => {
     message: "操作成功",
     data: {
       token,
-      queryUser,
+      userInfo:queryUser[0],
     },
   });
 };

@@ -7,6 +7,7 @@ import { rules } from "@/app/types/login/rules";
 import { login } from "@/app/web/login/api";
 import { Toast } from "@douyinfe/semi-ui";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/app/store";
 
 interface IFormInput {
   username: string;
@@ -15,6 +16,7 @@ interface IFormInput {
 
 export default function LoginForm() {
   const router = useRouter();
+  const userStore = useUserStore((state) => state.setUserInfo);
   const {
     handleSubmit,
     formState: { errors },
@@ -33,7 +35,9 @@ export default function LoginForm() {
         password: data.password,
       });
       if (result.data.code === 200) {
+        userStore(result.data.data.userInfo);
         Toast.success("登录成功");
+        router.prefetch("/")
         router.replace("/");
       } else {
         Toast.error(result.data.message);

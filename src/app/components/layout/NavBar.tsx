@@ -5,6 +5,9 @@ import { INavlist } from "@/app/types/navbar/types";
 import NavList from "@/app/components/layout/NavList";
 import Link from "next/link";
 import SetTheme from "@/app/components/layout/SetTheme";
+import Avatar from "./Avatar";
+import { useUserStore } from "@/app/store";
+import { User } from "@/app/types/user";
 
 const myFont = localFont({
   src: "../../styles/fonts/xingkai.ttf",
@@ -15,7 +18,7 @@ const myFont = localFont({
 const hStyles = `${myFont.className} font-bold text-5xl ${navbarStyles["gradient-text"]}`;
 const pStyles = `${myFont.className} font-bold text-5xl ml-1 ${navbarStyles["gradient-text"]} pr-1`;
 
-const navlist: INavlist[]= [
+const navlist: INavlist[] = [
   { id: 1, link: "/map", name: "摄影师" },
   { id: 2, link: "/rank", name: "排行榜" },
   { id: 3, link: "/share", name: "摄影分享区" },
@@ -23,6 +26,7 @@ const navlist: INavlist[]= [
 ];
 
 export default function NavBar() {
+  const userStore = useUserStore<User>((state) => state.user as User);
   return (
     // border-b border-gray-200
     <div className="h-16 box-border px-20">
@@ -38,8 +42,7 @@ export default function NavBar() {
           </div>
         </div>
         <div className="flex items-center ">
-          <LoginBtn />
-
+          {userStore.id ? <Avatar user={userStore}/> : <LoginBtn />}
           <SetTheme />
         </div>
       </div>
