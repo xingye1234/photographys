@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import localFont from "next/font/local";
-import { Carousel} from "@douyinfe/semi-ui";
-import { IconArrowLeft, IconArrowRight } from "@douyinfe/semi-icons";
+import { Carousel } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import { getBannerImages } from "@/app/web/home";
 import Loading from "@/app/loading";
@@ -14,15 +13,15 @@ const myFont = localFont({
 });
 
 export default function Swiper() {
-  const { data, isLoading} = useQuery<Record<string, any>>({
+  const { data, isLoading } = useQuery<Record<string, any>>({
     queryKey: ["banner"],
     queryFn: getBannerImages,
   });
 
-  const arrowProps = {
-    leftArrow: { children: <IconArrowLeft size="large" /> },
-    rightArrow: { children: <IconArrowRight size="large" /> },
-  };
+  // const arrowProps = {
+  //   leftArrow: { children: <IconArrowLeft size="large" /> },
+  //   rightArrow: { children: <IconArrowRight size="large" /> },
+  // };
 
   return (
     <>
@@ -30,17 +29,11 @@ export default function Swiper() {
         <Loading />
       ) : (
         <div className="relative">
-          <Carousel
-            className="w-full h-[25rem] lg:h-[40rem]"
-            arrowProps={arrowProps}
-            speed={1000}
-            theme="light"
-            autoPlay={true}
-          >
+          <Carousel autoplay arrows>
             {data &&
               data?.data?.data?.map((item, index) => {
                 return (
-                  <div key={index}>
+                  <div key={index} className="w-full h-[25rem] lg:h-[40rem]">
                     <img
                       src={item.img}
                       alt=""

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import '@radix-ui/themes/styles.css';
-import { ThemeProvider } from 'next-themes';
-import { Theme } from '@radix-ui/themes';
+import { ThemeProvider } from "next-themes";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 export const metadata: Metadata = {
   title: "Headerstream Photography",
@@ -18,9 +17,11 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning={true} className="dark:text-white">
         <ThemeProvider attribute="class">
-          <Theme>
+          <AntdRegistry>
+            {/* <Theme> */}
             {children}
-          </Theme>
+            {/* </Theme> */}
+          </AntdRegistry>
         </ThemeProvider>
       </body>
     </html>

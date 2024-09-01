@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { Button, Input } from "@douyinfe/semi-ui";
-import { IconUser, IconKey } from "@douyinfe/semi-icons";
+// import { Button, Input } from "@douyinfe/semi-ui";
+import { Input, Button } from 'antd';
+import {UserOutlined, UnlockOutlined} from "@ant-design/icons";
+// import { IconUser, IconKey } from "@douyinfe/semi-icons";
 import { rules } from "@/app/types/login/rules";
 import { login } from "@/app/web/login/api";
 import { Toast } from "@douyinfe/semi-ui";
@@ -16,7 +18,8 @@ interface IFormInput {
 
 export default function LoginForm() {
   const router = useRouter();
-  const userStore = useUserStore((state) => state.setUserInfo);
+  const {Password} = Input
+  const setUserInfo = useUserStore((state) => state.setUserInfo);
   const {
     handleSubmit,
     formState: { errors },
@@ -35,9 +38,13 @@ export default function LoginForm() {
         password: data.password,
       });
       if (result.data.code === 200) {
-        userStore(result.data.data.userInfo);
+        setUserInfo(result.data.data.userInfo);
+        localStorage.setItem(
+          "photography_status",
+          JSON.stringify({ token: result.data.data.token, status: 1 })
+        );
         Toast.success("登录成功");
-        router.prefetch("/")
+        router.prefetch("/");
         router.replace("/");
       } else {
         Toast.error(result.data.message);
@@ -57,9 +64,9 @@ export default function LoginForm() {
             rules={rules.uname}
             render={({ field }) => (
               <Input
-                prefix={<IconUser />}
+              prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
                 placeholder={"请输入用户名"}
-                validateStatus={errors.username ? "error" : "success"}
+                status={errors.username ? "error" : ""}
                 style={{ backgroundColor: "white" }}
                 size="large"
                 {...field}
@@ -79,14 +86,14 @@ export default function LoginForm() {
             control={control}
             rules={rules.pwd}
             render={({ field }) => (
-              <Input
-                prefix={<IconKey />}
+              <Password
+                // prefix={<IconKey />}
+                prefix={<UnlockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
                 placeholder={"请输入密码"}
-                validateStatus={errors.password ? "error" : "success"}
-                style={{ backgroundColor: "white" }}
+                status={errors.password ? "error" : ""}
                 size="large"
                 {...field}
-                mode="password"
+                // mode="password"
                 aria-invalid={errors.password ? "true" : "false"}
               />
             )}
@@ -99,7 +106,7 @@ export default function LoginForm() {
         </div>
 
         <div className="text-center mt-4 lg:ml-4 lg:mt-0">
-          <Button theme="solid" size="large" type="primary" htmlType="submit">
+          <Button size="large" type="primary" htmlType="submit">
             登录
           </Button>
         </div>

@@ -5,27 +5,11 @@ import { prisma } from "@/app/data/prisma";
 import { setCookie } from "@/app/utils/cookies";
 import { cookies } from "next/headers";
 
-//logout
-export const GET = async (req: NextRequest, res: NextResponse) => {
-  const result = await prisma.user.findMany();
-
-  console.log("------->", result);
-
-  return Response.json({
-    code: 200,
-    msg: "操作成功",
-    data: {
-      name: "wkx",
-      age: 24,
-    },
-  });
-};
 
 //login
 export const POST = async (req: NextRequest, res: NextApiResponse) => {
   const { username, password } = await req.json();
   const cookie = cookies();
-
   /**
    * TODO:
    * 1.判断用户和密码是否为null

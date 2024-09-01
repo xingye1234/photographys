@@ -7,7 +7,7 @@ interface UserState {
 }
 
 export const useUserStore = create<UserState>((set) => ({
-  user: JSON.parse(sessionStorage.getItem("user") || "{}"),
+  user: JSON.parse(sessionStorage.getItem("user")!) || {},
   setUserInfo: (user: User) => {
     sessionStorage.setItem("user", JSON.stringify(user));
     return set({ user });

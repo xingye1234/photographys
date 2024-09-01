@@ -1,9 +1,8 @@
 import React from "react";
-import { Box, Card, Flex, Text, Grid } from "@radix-ui/themes";
-import {getBannerImages} from "@/app/web/home";
+// import { Box, Card, Flex, Text, Grid } from "@radix-ui/themes";
+import { getBannerImages } from "@/app/web/home";
 import { useQuery } from "@tanstack/react-query";
-
-
+import { Col, Divider, Row, Card } from "antd";
 
 const topicList = [
   {
@@ -15,30 +14,31 @@ const topicList = [
   },
   {
     id: 2,
-    img: '/assets/home/banner/2.jpeg',
+    img: "/assets/home/banner/2.jpeg",
     link: "#",
     title: "Teodros Girmay",
     desc: "Engineering",
   },
   {
     id: 3,
-    img: '/assets/home/banner/3.jpeg',
+    img: "/assets/home/banner/3.jpeg",
     link: "#",
     title: "Teodros Girmay",
     desc: "Engineering",
   },
   {
     id: 4,
-    img: '/assets/home/banner/4.jpeg',
+    img: "/assets/home/banner/4.jpeg",
     link: "#",
     title: "Teodros Girmay",
     desc: "Engineering",
   },
 ];
 
-export default function Topic() {
+const style: React.CSSProperties = { background: "#0092ff", padding: "8px 0" };
 
-  const results = useQuery({queryKey:["banner"], queryFn:getBannerImages})
+export default function Topic() {
+  const results = useQuery({ queryKey: ["banner"], queryFn: getBannerImages });
   // console.log(results)
 
   return (
@@ -46,39 +46,25 @@ export default function Topic() {
       <span className="border-l-4 border-blue-500 pl-2"></span>
       <span className="font-bold">专题</span>
 
-      <Box mt={"4"}>
-        <Grid
-          columns={{
-            xs: "2",
-            md: "4",
-          }}
-          gap="4"
-          width="auto"
-        >
-          {topicList.map((_, index) => (
-            <Card key={index}>
-              <Flex gap="3" direction={"column"}>
-                {/* <Image
+      <Row gutter={16} className="mt-4">
+        {topicList.map((_, index) => (
+          <Col span={6} key={index}>
+            <Card>
+              <div className="flex flex-col">
+                <img
                   src={_.img}
                   alt={_.title}
-                  style={{objectFit: "fill"}}
-                  width={200}
-                  height={200}
-                ></Image> */}
-                <img src={_.img} alt={_.title} className="object-cover w-full h-[12rem]"></img>
-                <Box>
-                  <Text as="div" size="2" weight="bold">
-                    Teodros Girmay
-                  </Text>
-                  <Text as="div" size="2" color="gray">
-                    Engineering
-                  </Text>
-                </Box>
-              </Flex>
+                  className="object-cover w-full h-[12rem]"
+                ></img>
+                <div>
+                  <div className="font-bold text-lg">Teodros Girmay</div>
+                  <div className="font-bold text-lg">Engineering</div>
+                </div>
+              </div>
             </Card>
-          ))}
-        </Grid>
-      </Box>
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 }

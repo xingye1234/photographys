@@ -7,10 +7,11 @@ export const login = ({
 }: {
   username: string;
   password: string;
-}) => POST("/api/login", {
-  username,
-  password: hashStr(password),
-});
+}) =>
+  POST("/api/login", {
+    username,
+    password: hashStr(password),
+  });
 
 export const register = ({
   username,
@@ -26,3 +27,7 @@ export const register = ({
     email,
     password: hashStr(password),
   });
+
+export const logout = () => {
+  return GET("/api/logout");
+};
